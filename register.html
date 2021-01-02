@@ -33,17 +33,16 @@
 			
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-info" onclick="RegisterUser()">회원가입<i class="fa fa-check spaceLeft"></i></button>
-                <button type="submit" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button>
             </div>
         </div>
       </article>
       <script>
         function RegisterUser() {
             if (document.getElementById("Password").value == document.getElementById("Password2").value) {
+                alert("if문 입장함.");
                 var request = new XMLHttpRequest();
-                var params = "?Id=" + document.getElementById("Id").value + "&Password=" + document.getElementById("Password").value
-                    + "&Name=" + document.getElementById("Name").value + "&PhoneNum=" + document.getElementById("PhoneNum").value
-                    + "&Email=" + document.getElementById("Email").value;
+                var params = "?user_id=" + document.getElementById("Id").value + "&user_password=" + document.getElementById("Password").value
+                    + "&user_name=" + document.getElementById("Name").value;
      
                 request.open("GET", "register.php" + params, true);
                 request.onreadystatechange = function () {
@@ -54,7 +53,7 @@
                                 alert("회원가입이 완료되었습니다.");
                             }
                             else {
-                                alert("회원가입에 실패하였습니다.");
+                                alert("회원가입에 실패하였습니다." + str);
                             }
                         }
                     }
