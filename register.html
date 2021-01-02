@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>회원가입</title>
+  </head>
+  <body>
+
+
+      <article class="container">
+        <div class="page-header">
+          <h1>회원가입</h1>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+              <label for="InputId">아이디</label>
+              <input type="text" class="form-control" id="Id" placeholder="아이디">
+            </div>
+			
+            <div class="form-group">
+              <label for="InputPassword1">비밀번호</label>
+              <input type="password" class="form-control" id="Password" placeholder="비밀번호">
+            </div>
+			
+            <div class="form-group">
+              <label for="InputPassword2">비밀번호 확인</label>
+              <input type="password" class="form-control" id="Password2" placeholder="비밀번호 확인">
+            </div>
+            <div class="form-group">
+              <label for="username">이름</label>
+              <input type="text" class="form-control" id="Name" placeholder="이름을 입력해 주세요">
+            </div>
+			
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-info" onclick="RegisterUser()">회원가입<i class="fa fa-check spaceLeft"></i></button>
+                <button type="submit" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button>
+            </div>
+        </div>
+      </article>
+      <script>
+        function RegisterUser() {
+            if (document.getElementById("Password").value == document.getElementById("Password2").value) {
+                var request = new XMLHttpRequest();
+                var params = "?Id=" + document.getElementById("Id").value + "&Password=" + document.getElementById("Password").value
+                    + "&Name=" + document.getElementById("Name").value + "&PhoneNum=" + document.getElementById("PhoneNum").value
+                    + "&Email=" + document.getElementById("Email").value;
+     
+                request.open("GET", "register.php" + params, true);
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4) { //서버로부터 응답상태
+                        if (request.status == 200 || request.status == 0) {//200 : 웹 서버의 응답처리상태
+                            var str = request.responseText;
+                            if (str == "1") {
+                                alert("회원가입이 완료되었습니다.");
+                            }
+                            else {
+                                alert("회원가입에 실패하였습니다.");
+                            }
+                        }
+                    }
+                }
+                request.send(null);
+            }
+            else {
+                alert("비밀번호가 일치하지 않습니다.");
+            }
+        }
+    </script>
+  </body>
+</html>
