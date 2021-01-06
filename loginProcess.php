@@ -1,9 +1,9 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "Acute3062!", "test");
-$email = $_POST['email'];
+$conn = mysqli_connect("localhost", "root", "Acute3062!", "scaduler");
+$id = $_POST['id'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM user WHERE email ='{$email}'";
+$sql = "SELECT * FROM users WHERE 'user_id'='{$id}'";
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_array($result);
@@ -22,13 +22,14 @@ if ($passwordResult === true) {
 ?>
     <script>
         alert("로그인에 성공하였습니다.")
-        location.href = "index.php";
+        location.href = "calender_mainpage.html";
     </script>
 <?php
 } else {
 ?>
     <script>
         alert("로그인에 실패하였습니다");
+        location.href = "calender_mainpage.html";
     </script>
 <?php
 }

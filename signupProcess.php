@@ -1,12 +1,12 @@
 <?php
 ini_set('display_errors', true);
-$conn = mysqli_connect('localhost', 'root', 'Acute3062!', 'test');
-$hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$conn = mysqli_connect('localhost', 'root', 'Acute3062!', 'scaduler');
+$hashedPassword = password_hash($_POST['first-password'], PASSWORD_DEFAULT);
 echo $hashedPassword;
 $sql = "
-    INSERT INTO user
-    (email, password, created)
-    VALUES('{$_POST['email']}', '{$hashedPassword}', NOW()
+    INSERT INTO users
+    (user_id, password, user_name, grade, class, number, created)
+    VALUES('{$_POST['first-id']}', '{$hashedPassword}', '{$_POST['user-name']}', '{$_POST['grade']}', '{$_POST['class']}', '{$_POST['class-number']}', NOW()
     )";
 echo $sql;
 $result = mysqli_query($conn, $sql);
@@ -18,7 +18,7 @@ if ($result === false) {
 ?>
     <script>
         alert("회원가입이 완료되었습니다");
-        location.href = "index.php";
+        location.href = "calender_mainpage.html";
     </script>
 <?php
 }
