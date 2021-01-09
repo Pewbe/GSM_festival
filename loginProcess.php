@@ -3,7 +3,7 @@ $conn = mysqli_connect("localhost", "root", "Acute3062!", "scaduler");
 $id = $_POST['id'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE 'user_id'='{$id}'";
+$sql = "SELECT * FROM users WHERE userid ='{$id}'";
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_array($result);
@@ -13,6 +13,7 @@ $row['id'];
 foreach($row as $key => $r){
     echo "{$key} : {$r} <br>";
 }
+
 $passwordResult = password_verify($password, $hashedPassword);
 if ($passwordResult === true) {
     session_start();

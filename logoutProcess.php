@@ -3,5 +3,5 @@ session_start();
 session_destroy();
 ?>
 <script>
-    location.href = "index.php";
+    location.href = "calender_mainpage.html";
 </script>

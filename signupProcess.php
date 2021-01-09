@@ -5,7 +5,7 @@ $hashedPassword = password_hash($_POST['first-password'], PASSWORD_DEFAULT);
 echo $hashedPassword;
 $sql = "
     INSERT INTO users
-    (user_id, password, user_name, grade, class, number, created)
+    (userid, password, user_name, grade, class, number, created)
     VALUES('{$_POST['first-id']}', '{$hashedPassword}', '{$_POST['user-name']}', '{$_POST['grade']}', '{$_POST['class']}', '{$_POST['class-number']}', NOW()
     )";
 echo $sql;
